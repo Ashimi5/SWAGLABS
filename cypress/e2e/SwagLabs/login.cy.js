@@ -1,12 +1,13 @@
+import { loginSelectors } from "../../support/selector/login";
 describe('Login Tests', () => {
   
     //Login with empty username and password 
       
     it('Login with Empty Username and Password', () => {
         cy.visit('https://www.saucedemo.com');
-        cy.get("#user-name");
-        cy.get("#password");
-        cy.get("#login-button").click();
+        cy.get(loginSelectors.userName).clear();
+        cy.get(loginSelectors.passWord).clear();
+        cy.get(loginSelectors.loginButton).click();
         cy.get("h3[data-test='error']").should('be.visible');
         cy.get("h3[data-test='error']").should('contain','Epic sadface: Username is required');
   
@@ -17,9 +18,9 @@ describe('Login Tests', () => {
   
       it('Invalid Login with Incorrect Username', () => {
           cy.visit('https://www.saucedemo.com');
-          cy.get("#user-name").type("abxc");
-          cy.get("#password").type("secret_sauce");
-          cy.get("#login-button").click();
+          cy.get(loginSelectors.userName).type("abxc");
+          cy.get(loginSelectors.passWord).type("secret_sauce");
+          cy.get(loginSelectors.loginButton).click();
           cy.get("h3[data-test='error']").should('be.visible');
           cy.get("h3[data-test='error']").should('contain','Epic sadface: Username and password do not match any user in this service');
       });
@@ -28,8 +29,8 @@ describe('Login Tests', () => {
       
       it('Invalid Login with Incorrect Password', () => {
           cy.visit('https://www.saucedemo.com');
-          cy.get("#user-name").type("standard_user");
-          cy.get("#password").type("tomato_sauce");
+          cy.get(loginSelectors.userName).type("standard_user");
+          cy.get(loginSelectors.passWord).type("tomato_sauce");
           cy.get("#login-button").click();
           cy.get("h3[data-test='error']").should('be.visible');
           cy.get("h3[data-test='error']").should('contain','Epic sadface: Username and password do not match any user in this service');
@@ -41,8 +42,8 @@ describe('Login Tests', () => {
     
       it('Login with locked out user', () => {
           cy.visit('https://www.saucedemo.com');
-          cy.get("#user-name").type("locked_out_user");
-          cy.get("#password").type("secret_sauce");
+          cy.get(loginSelectors.userName).type("locked_out_user");
+          cy.get(loginSelectors.passWord).type("secret_sauce");
           cy.get("#login-button").click();
           cy.get("h3[data-test='error']").should('be.visible');
           cy.get("h3[data-test='error']").should('contain','Epic sadface: Sorry, this user has been locked out.');
@@ -52,7 +53,7 @@ describe('Login Tests', () => {
     
       it('Login with problem user', () => {
           cy.visit('https://www.saucedemo.com');
-          cy.get("#user-name").type('problem_user');
+          cy.get(loginSelectors.userName).type('problem_user');
           cy.get("#password").type('secret_sauce');
           cy.get("#login-button").click();
           cy.url().should('include', '/inventory.html');
@@ -62,7 +63,7 @@ describe('Login Tests', () => {
     
       it('Login with Performance Glitch User', () => {
           cy.visit('https://www.saucedemo.com');
-          cy.get("#user-name").type('performance_glitch_user');
+          cy.get(loginSelectors.userName).type('performance_glitch_user');
           cy.get("#password").type('secret_sauce');
           cy.get("#login-button").click();
           cy.url().should('include', '/inventory.html');
@@ -72,7 +73,7 @@ describe('Login Tests', () => {
       
       it('Login with empty username', () => {
           cy.visit('https://www.saucedemo.com');
-          cy.get("#user-name");
+          cy.get(loginSelectors.userName);
           cy.get("#password").type('secret_sauce');
           cy.get("#login-button").click();
           cy.get("h3[data-test='error']").should('be.visible');
@@ -83,7 +84,7 @@ describe('Login Tests', () => {
     
       it('Login with empty Password', () => {
           cy.visit('https://www.saucedemo.com');
-          cy.get("#user-name").type('standard_user');
+          cy.get(loginSelectors.userName).type('standard_user');
           cy.get("#password");
           cy.get("#login-button").click();
           cy.get("h3[data-test='error']").should('be.visible');
@@ -94,7 +95,7 @@ describe('Login Tests', () => {
   
       it('Valid login with standard user', () => {
         cy.visit('https://www.saucedemo.com');
-        cy.get("#user-name").type('standard_user');
+        cy.get(loginSelectors.userName).type('standard_user');
         cy.get("#password").type('secret_sauce');
   
         cy.get("#login-button").click();
