@@ -106,6 +106,9 @@ describe('Login Tests', () => {
      
         cy.get("#react-burger-menu-btn").click();
         cy.get("#logout_sidebar_link").click();
+
+        cy.get("div[id='login_credentials'] h4").should('have.text','Accepted usernames are:');
+        cy.get("div[class='login_password'] h4").should('have.text','Password for all users:');
        
       });
     
