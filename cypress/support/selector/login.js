@@ -1,5 +1,5 @@
 export const loginSelectors = {
-    userName: "#user-name",
-    passWord: "#password",
+    loginFormEmail: "#user-name",
+    loginFormPassword: "#password",
     loginButton: "#login-button"
 }
