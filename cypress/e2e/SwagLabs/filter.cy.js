@@ -1,15 +1,18 @@
+import { loginSelectors } from "../../support/selector/login";
+
 describe('Filter the products',()=>{
 
     it('Verify the filter the products',()=>{
 
         cy.visit('https://www.saucedemo.com');
-
         cy.url().should('contain','saucedemo.com');  // Assertion for URL
-        
-        cy.get('[data-test="username"]').type('standard_user');
-        cy.get('[data-test="password"]').type('secret_sauce');
-        cy.get('[data-test="login-button"]').click();
+        cy.get(loginSelectors.userName).clear();
+        cy.get(loginSelectors.passWord).clear();
+        cy.get(loginSelectors.loginButton).click();
         cy.url().should('include', '/inventory.html');
+         
+
+
 
 
         cy.get('option').eq(0).should('have.text','Name (A to Z)');
