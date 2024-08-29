@@ -11,6 +11,8 @@ export const addtoCart = {
     addtoCart4: "#add-to-cart-sauce-labs-backpack",
     remove1:  "#remove-sauce-labs-backpack",
     remove2: "#remove-sauce-labs-bike-light",
+    remove3: "#remove-sauce-labs-bolt-t-shirt",
+    remove4: "#remove-sauce-labs-fleece-jacket",
     loginFormEmail: "#user-name",
     loginFormPassword: "#password",
     loginSubmit: "#login-button",
